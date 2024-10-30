@@ -12,3 +12,5 @@ The app works with all english characters, numbers and standard symbols and pres
 Please feel free to use my app however i take no responsibility for any losses or damages that may come aboutas a result of using this software.
 
 This is a ongoing passion project and new versions will likely come so please feel free to leave me requests for new features.
+
+Note: As of now i havent paid to get a Code Signing Certificate as this is just a hobby project and i dont have the hundreds of dollars to spare. this means windows will flag it as 'Unknown Publisher' if you try to run it. Just a heads up. 
