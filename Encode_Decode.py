@@ -7,7 +7,6 @@
 ╚══════╝╚═╝  ╚═══╝ ╚═════╝ ╚═════╝ ╚═════╝ ╚══════╝    ╚═════╝ ╚══════╝ ╚═════╝ ╚═════╝ ╚══════╝
 Created by AmossT 2024
 '''
-
 import random
 import tkinter as tk
 import re
@@ -15,12 +14,13 @@ import time
 import string
 from PIL import Image, ImageTk
 import sys
+import secrets
 
 def encode(text, seed):
     seed = ''.join(str(ord(char)) for char in seed)
-    random.seed(time.time())
-    pad_length1 = random.randrange(5, 52)
-    pad_length2 = random.randrange(6, 46)
+    rand_offset = secrets.randbelow(35)/100
+    pad_length1 = 7+secrets.randbelow(25+int(round((rand_offset+0.09)*len(text))))
+    pad_length2 = 5+secrets.randbelow(30+int(round((rand_offset+0.08)*len(text))))
     padded_text = pad_length1 * "0" + text + pad_length2 * "0"
     random.seed(seed)
     encoded_text = ''
@@ -37,7 +37,6 @@ def encode(text, seed):
     encoded_text = list(encoded_text)
     random.shuffle(encoded_text)
     shuffled_text = ''.join(encoded_text)
-
     return shuffled_text
 
 
@@ -111,7 +110,7 @@ def update_seed_report(*args):  # determines quality of seed and length and upda
 def generate_seed():
     random.seed(time.time())
     characters = string.ascii_letters + string.digits + string.punctuation  # Letters, numbers, and special characters
-    random_string = ''.join(random.choice(characters) for _ in range(128))
+    random_string = ''.join(secrets.choice(characters) for _ in range(256))
     seed_var.set(random_string)
 
 
@@ -183,3 +182,4 @@ pad_frame.grid_columnconfigure(0, weight=1)  # Main column
 
 root.geometry("450x400")
 root.mainloop()
+
